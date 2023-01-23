@@ -1,0 +1,15 @@
+install.packages("Rcpp")
+install.packages("fs")
+install.packages("vctrs")
+install.packages("magrittr")
+install.packages("tidyverse")
+
+devtools::install_github("gluc/ahp", build_vignettes = TRUE)
+
+library(ahp)
+ahpFile <- system.file("extdata", "lodowki.ahp", package="ahp")
+lodowkiAhp <- Load(ahpFile)
+Calculate(lodowkiAhp)
+Visualize(lodowkiAhp)
+Analyze(lodowkiAhp)
+AnalyzeTable(lodowkiAhp)

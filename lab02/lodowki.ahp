@@ -1,0 +1,100 @@
+Version: 2.0
+
+Alternatives: &alternatives
+  Lodowka_1:
+    cena: 200
+	pojemnosc_uzytkowa_chlodziarki: 50
+	pojemnosc_uzytkowa_zamrazarki: 100
+	kolor: czerwony
+  Lodowka_2:
+    cena: 300
+	pojemnosc_uzytkowa_chlodziarki: 150
+	pojemnosc_uzytkowa_zamrazarki: 200
+	kolor: niebieski 
+  Lodowka_3:
+    cena: 400
+	pojemnosc_uzytkowa_chlodziarki: 250
+	pojemnosc_uzytkowa_zamrazarki: 300
+	kolor: zolty
+  Lodowka_4:
+    cena: 500
+	pojemnosc_uzytkowa_chlodziarki: 350
+ 	pojemnosc_uzytkowa_zamrazarki: 400
+	kolor: zielony
+  Lodowka_5:
+    cena: 600
+	pojemnosc_uzytkowa_chlodziarki: 450
+	pojemnosc_uzytkowa_zamrazarki: 500
+	kolor: czarny
+
+
+Goal:
+  name: Kupno lodowki
+  description: >
+    To jest klasyczny problem jedno decyzyjnej
+  author: MaciejKuchejda
+  preferences:
+    pairwise:
+      - [Koszt, Wydajnosc, 3]
+      - [Koszt, Styl, 7]
+      - [Koszt, Jakosc, 3]
+      - [Wydajnosc, Styl, 9]
+      - [Wydajnosc, Jakosc, 1]
+      - [Styl, Jakosc, 1/7]
+  children: 
+    Koszt:
+      preferences:
+        pairwise:
+	      - [Lodowka_1, Lodowka_2, 1.5]
+          - [Lodowka_1, Lodowka_3, 4]
+          - [Lodowka_1, Lodowka_4, 4]
+          - [Lodowka_1, Lodowka_5, 4]
+          - [Lodowka_2, Lodowka_3, 5]
+          - [Lodowka_2, Lodowka_4, 4]
+          - [Lodowka_2, Lodowka_5, 5]
+          - [Lodowka_3, Lodowka_4, 1]
+          - [Lodowka_3, Lodowka_5, 3]
+          - [Lodowka_4, Lodowka_5, 2]
+      children: *alternatives
+    Wydajnosc:
+      preferences:
+        pairwise:
+	      - [Lodowka_1, Lodowka_2, 1]
+          - [Lodowka_1, Lodowka_3, 5]
+          - [Lodowka_1, Lodowka_4, 7]
+          - [Lodowka_1, Lodowka_5, 9]
+          - [Lodowka_2, Lodowka_3, 1/3]
+          - [Lodowka_2, Lodowka_4, 5]
+          - [Lodowka_2, Lodowka_5, 7]
+          - [Lodowka_3, Lodowka_4, 9]
+          - [Lodowka_3, Lodowka_5, 1/3]
+          - [Lodowka_4, Lodowka_5, 2]
+      children: *alternatives
+	Styl:
+      preferences:
+        pairwise:
+	      - [Lodowka_1, Lodowka_2, 1/5]
+          - [Lodowka_1, Lodowka_3, 5]
+          - [Lodowka_1, Lodowka_4, 7]
+          - [Lodowka_1, Lodowka_5, 1/3]
+          - [Lodowka_2, Lodowka_3, 3]
+          - [Lodowka_2, Lodowka_4, 1/6]
+          - [Lodowka_2, Lodowka_5, 6]
+          - [Lodowka_3, Lodowka_4, 9]
+          - [Lodowka_3, Lodowka_5, 5]
+          - [Lodowka_4, Lodowka_5, 7]
+      children: *alternatives
+    Jakosc:
+      preferences:
+        pairwise:
+	      - [Lodowka_1, Lodowka_2, 1/9]
+          - [Lodowka_1, Lodowka_3, 1/8]
+          - [Lodowka_1, Lodowka_4, 2]
+          - [Lodowka_1, Lodowka_5, 1/8]
+          - [Lodowka_2, Lodowka_3, 9]
+          - [Lodowka_2, Lodowka_4, 2]
+          - [Lodowka_2, Lodowka_5, 1/3]
+          - [Lodowka_3, Lodowka_4, 9]
+          - [Lodowka_3, Lodowka_5, 7]
+          - [Lodowka_4, Lodowka_5, 5]
+      children: *alternatives
